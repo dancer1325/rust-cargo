@@ -1,10 +1,10 @@
 # Cargo
 
-Cargo downloads your Rust project’s dependencies and compiles your project.
+* Cargo 
+  * allows 
+    * downloads your Rust project’s dependencies 
+    * compile your project
 
-**To start using Cargo**, learn more at [The Cargo Book].
-
-**To start developing Cargo itself**, read the [Cargo Contributor Guide].
 
 [The Cargo Book]: https://doc.rust-lang.org/cargo/
 [Cargo Contributor Guide]: https://rust-lang.github.io/cargo/contrib/
@@ -20,24 +20,28 @@ Cargo downloads your Rust project’s dependencies and compiles your project.
 
 [![CI](https://github.com/rust-lang/cargo/actions/workflows/main.yml/badge.svg?branch=auto-cargo)](https://github.com/rust-lang/cargo/actions/workflows/main.yml)
 
-Code documentation: <https://doc.rust-lang.org/nightly/nightly-rustc/cargo/>
-
 ## Compiling from Source
 
 ### Requirements
 
-Cargo requires the following tools and packages to build:
-
-* `cargo` and `rustc`
-* A C compiler [for your platform](https://github.com/rust-lang/cc-rs#compile-time-requirements)
-* `git` (to clone this repository)
+* `cargo` & `rustc`
+* C compiler 
+  * Reason: 🧠[for your platform](https://github.com/rust-lang/cc-rs#compile-time-requirements)🧠
 
 **Other requirements:**
 
-The following are optional based on your platform and needs.
+* OPTIONAL
 
-* `pkg-config` — This is used to help locate system packages, such as `libssl` headers/libraries. This may not be required in all cases, such as using vendored OpenSSL, or on Windows.
-* OpenSSL — Only needed on Unix-like systems and only if the `vendored-openssl` Cargo feature is not used.
+* `pkg-config`
+  * uses
+    * help locate system packages
+      * _Examples:_ `libssl` headers/libraries
+  * use cases / OPTIONAL
+    * use vendored OpenSSL
+    * | Windows
+* OpenSSL
+  * use cases / MANDATORY
+    * Unix-like systems & you do NOT use `vendored-openssl` Cargo feature
 
   This requires the development headers, which can be obtained from the `libssl-dev` package on Ubuntu or `openssl-devel` with apk or yum or the `openssl` package from Homebrew on macOS.
 
