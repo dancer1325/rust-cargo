@@ -38,7 +38,7 @@ fn build_mdman() -> io::Result<()> {
 /// Builds the man pages for Cargo.
 ///
 /// The source for the man pages are located in src/doc/man/ in markdown format.
-/// These also are handlebars templates, see crates/mdman/README.md for details.
+/// These also are handlebars templates, see crates/mdman/README.md.md for details.
 ///
 /// The generated man pages are placed in the src/etc/man/ directory. The pages
 /// are also expanded into markdown (after being expanded by handlebars) and

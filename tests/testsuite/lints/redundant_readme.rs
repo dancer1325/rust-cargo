@@ -13,7 +13,7 @@ name = "foo"
 version = "0.0.1"
 edition = "2015"
 authors = []
-readme = "README.md"
+readme = "README.md.md"
 
 [lints.cargo]
 default = { level = "allow", priority = -1 }
@@ -21,7 +21,7 @@ redundant_readme = "warn"
 "#,
         )
         .file("src/main.rs", "fn main() {}")
-        .file("README.md", "")
+        .file("README.md.md", "")
         .build();
 
     p.cargo("fetch -Zcargo-lints")
@@ -30,13 +30,13 @@ redundant_readme = "warn"
 [WARNING] explicit `package.readme` can be inferred
  --> Cargo.toml:7:1
   |
-7 | readme = "README.md"
+7 | readme = "README.md.md"
   | ^^^^^^^^^^^^^^^^^^^^
   |
   = [NOTE] `cargo::redundant_readme` is set to `warn` in `[lints]`
 [HELP] consider removing `package.readme`
   |
-7 - readme = "README.md"
+7 - readme = "README.md.md"
   |
 [WARNING] `foo` (manifest) generated 1 warning
 
@@ -62,7 +62,7 @@ redundant_readme = "warn"
 "#,
         )
         .file("src/main.rs", "fn main() {}")
-        .file("README.md", "")
+        .file("README.md.md", "")
         .build();
 
     p.cargo("fetch -Zcargo-lints")
@@ -110,7 +110,7 @@ name = "foo"
 version = "0.0.1"
 edition = "2015"
 authors = []
-readme = "src/README.md"
+readme = "src/README.md.md"
 
 [lints.cargo]
 default = { level = "allow", priority = -1 }
@@ -118,7 +118,7 @@ redundant_readme = "warn"
 "#,
         )
         .file("src/main.rs", "fn main() {}")
-        .file("src/README.md", "")
+        .file("src/README.md.md", "")
         .build();
 
     p.cargo("fetch -Zcargo-lints")
@@ -134,7 +134,7 @@ fn inherited() {
             "Cargo.toml",
             r#"
 [workspace.package]
-readme = "README.md"
+readme = "README.md.md"
 
 [package]
 name = "foo"
@@ -149,7 +149,7 @@ redundant_readme = "warn"
 "#,
         )
         .file("src/main.rs", "fn main() {}")
-        .file("README.md", "")
+        .file("README.md.md", "")
         .build();
 
     p.cargo("fetch -Zcargo-lints")

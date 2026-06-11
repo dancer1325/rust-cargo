@@ -21,7 +21,7 @@ redundant_homepage = "warn"
 "#,
         )
         .file("src/main.rs", "fn main() {}")
-        .file("README.md", "")
+        .file("README.md.md", "")
         .build();
 
     p.cargo("fetch -Zcargo-lints")
@@ -65,7 +65,7 @@ redundant_homepage = "warn"
 "#,
         )
         .file("src/main.rs", "fn main() {}")
-        .file("README.md", "")
+        .file("README.md.md", "")
         .build();
 
     p.cargo("fetch -Zcargo-lints")
@@ -113,7 +113,7 @@ redundant_homepage = "warn"
 "#,
         )
         .file("src/main.rs", "fn main() {}")
-        .file("README.md", "")
+        .file("README.md.md", "")
         .build();
 
     p.cargo("fetch -Zcargo-lints")

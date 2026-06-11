@@ -832,7 +832,7 @@ fn normalize_package_toml<'a>(
     Ok(Box::new(normalized_package))
 }
 
-/// Returns the name of the README file for a [`manifest::TomlPackage`].
+/// Returns the name of the README.md file for a [`manifest::TomlPackage`].
 fn normalize_package_readme(
     package_root: &Path,
     readme: Option<&manifest::StringOrBool>,
@@ -841,15 +841,15 @@ fn normalize_package_readme(
         None => default_readme_from_package_root(package_root),
         Some(value) => match value {
             manifest::StringOrBool::Bool(false) => None,
-            manifest::StringOrBool::Bool(true) => Some("README.md".to_string()),
+            manifest::StringOrBool::Bool(true) => Some("README.md.md".to_string()),
             manifest::StringOrBool::String(v) => Some(v.clone()),
         },
     }
 }
 
-pub const DEFAULT_README_FILES: [&str; 3] = ["README.md", "README.txt", "README"];
+pub const DEFAULT_README_FILES: [&str; 3] = ["README.md.md", "README.md.txt", "README.md"];
 
-/// Checks if a file with any of the default README file names exists in the package root.
+/// Checks if a file with any of the default README.md file names exists in the package root.
 /// If so, returns a `String` representing that name.
 fn default_readme_from_package_root(package_root: &Path) -> Option<String> {
     for &readme_filename in DEFAULT_README_FILES.iter() {

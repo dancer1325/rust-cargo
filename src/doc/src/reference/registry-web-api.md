@@ -132,10 +132,10 @@ considered as an exhaustive list of restrictions [crates.io] imposes.
     // String of the URL to the website for this package's home page.
     // May be null.
     "homepage": null,
-    // String of the content of the README file.
+    // String of the content of the README.md file.
     // May be null.
     "readme": null,
-    // String of a relative path to a README file in the crate.
+    // String of a relative path to a README.md file in the crate.
     // May be null.
     "readme_file": null,
     // Array of strings of keywords for the package.

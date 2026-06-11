@@ -1130,7 +1130,7 @@ Caused by:
 fn dep_with_skipped_submodule() {
     // Ensure we skip dependency submodules if their update strategy is `none`.
     let qux = git::new("qux", |project| {
-        project.no_manifest().file("README", "skip me")
+        project.no_manifest().file("README.md", "skip me")
     });
 
     let bar = git::new("bar", |project| {
@@ -3930,7 +3930,7 @@ fn _corrupted_checkout(with_cli: bool) {
     });
 
     let project2 = git::new("dep2", |project| {
-        project.no_manifest().file("README.md", "")
+        project.no_manifest().file("README.md.md", "")
     });
     let url = project2.root().to_url().to_string();
     add_submodule(&repository, &url, Path::new("dep2"));
@@ -3967,7 +3967,7 @@ fn _corrupted_checkout(with_cli: bool) {
     let dep1_co_path = dep1_co_paths.next().unwrap().unwrap();
     let dep1_ok = dep1_co_path.join(".cargo-ok");
     let dep1_manifest = dep1_co_path.join("Cargo.toml");
-    let dep2_readme = dep1_co_path.join("dep2/README.md");
+    let dep2_readme = dep1_co_path.join("dep2/README.md.md");
 
     // Deleting this file simulates an interrupted checkout.
     t!(fs::remove_file(&dep1_ok));
@@ -4101,11 +4101,11 @@ fn git_worktree_with_original_repo_renamed() {
                     homepage = "https://example.org"
                     documentation = ""
                     repository = "https://example.org"
-                    readme = "./README.md"
+                    readme = "./README.md.md"
                 "#,
             )
             .file("src/lib.rs", "")
-            .file("README.md", "")
+            .file("README.md.md", "")
     });
 
     let repo = git2::Repository::open(&git_project.root()).unwrap();
@@ -4127,7 +4127,7 @@ fn git_worktree_with_original_repo_renamed() {
 Cargo.lock
 Cargo.toml
 Cargo.toml.orig
-README.md
+README.md.md
 src/lib.rs
 
 "#]])
@@ -4252,11 +4252,11 @@ fn git_worktree_with_bare_original_repo() {
                     homepage = "https://example.org"
                     documentation = ""
                     repository = "https://example.org"
-                    readme = "./README.md"
+                    readme = "./README.md.md"
                 "#,
             )
             .file("src/lib.rs", "")
-            .file("README.md", "")
+            .file("README.md.md", "")
     });
 
     // Create a "bare" Git repository.
@@ -4286,7 +4286,7 @@ fn git_worktree_with_bare_original_repo() {
 Cargo.lock
 Cargo.toml
 Cargo.toml.orig
-README.md
+README.md.md
 src/lib.rs
 
 "#]])

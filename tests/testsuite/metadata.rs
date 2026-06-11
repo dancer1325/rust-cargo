@@ -2547,7 +2547,7 @@ fn package_metadata() {
                 authors = ["wycats@example.com"]
                 categories = ["database"]
                 keywords = ["database"]
-                readme = "README.md"
+                readme = "README.md.md"
                 repository = "https://github.com/rust-lang/cargo"
                 homepage = "https://rust-lang.org"
                 documentation = "https://doc.rust-lang.org/stable/std/"
@@ -2556,7 +2556,7 @@ fn package_metadata() {
                 baz = "quux"
             "#,
         )
-        .file("README.md", "")
+        .file("README.md.md", "")
         .file("src/lib.rs", "")
         .build();
 
@@ -2595,7 +2595,7 @@ fn package_metadata() {
       },
       "name": "foo",
       "publish": null,
-      "readme": "README.md",
+      "readme": "README.md.md",
       "repository": "https://github.com/rust-lang/cargo",
       "rust_version": null,
       "source": null,
@@ -2648,12 +2648,12 @@ fn package_publish() {
                 authors = ["wycats@example.com"]
                 categories = ["database"]
                 keywords = ["database"]
-                readme = "README.md"
+                readme = "README.md.md"
                 repository = "https://github.com/rust-lang/cargo"
                 publish = ["my-registry"]
             "#,
         )
-        .file("README.md", "")
+        .file("README.md.md", "")
         .file("src/lib.rs", "")
         .build();
 
@@ -2690,7 +2690,7 @@ fn package_publish() {
       "publish": [
         "my-registry"
       ],
-      "readme": "README.md",
+      "readme": "README.md.md",
       "repository": "https://github.com/rust-lang/cargo",
       "rust_version": null,
       "source": null,

@@ -19,7 +19,7 @@ fn permit_additional_workspace_fields() {
             authors = ["Rustaceans"]
             description = "This is a crate"
             documentation = "https://www.rust-lang.org/learn"
-            readme = "README.md"
+            readme = "README.md.md"
             homepage = "https://www.rust-lang.org"
             repository = "https://github.com/example/example"
             license = "MIT"
@@ -30,7 +30,7 @@ fn permit_additional_workspace_fields() {
             edition = "2018"
             rust-version = "1.60"
             exclude = ["foo.txt"]
-            include = ["bar.txt", "**/*.rs", "Cargo.toml", "LICENSE", "README.md"]
+            include = ["bar.txt", "**/*.rs", "Cargo.toml", "LICENSE", "README.md.md"]
 
             [workspace.dependencies]
             dep = "0.1"
@@ -701,7 +701,7 @@ fn inherit_workspace_fields() {
             authors = ["Rustaceans"]
             description = "This is a crate"
             documentation = "https://www.rust-lang.org/learn"
-            readme = "README.md"
+            readme = "README.md.md"
             homepage = "https://www.rust-lang.org"
             repository = "https://github.com/example/example"
             license = "MIT"
@@ -712,7 +712,7 @@ fn inherit_workspace_fields() {
             edition = "2018"
             rust-version = "1.60"
             exclude = ["foo.txt"]
-            include = ["bar.txt", "**/*.rs", "Cargo.toml", "LICENSE", "README.md"]
+            include = ["bar.txt", "**/*.rs", "Cargo.toml", "LICENSE", "README.md.md"]
             "#,
         )
         .file("src/main.rs", "fn main() {}")
@@ -741,7 +741,7 @@ fn inherit_workspace_fields() {
         "#,
         )
         .file("LICENSE", "license")
-        .file("README.md", "README.md")
+        .file("README.md.md", "README.md.md")
         .file("bar/src/main.rs", "fn main() {}")
         .file("bar/foo.txt", "") // should be ignored when packaging
         .file("bar/bar.txt", "") // should be included when packaging
@@ -788,8 +788,8 @@ See https://doc.rust-lang.org/cargo/reference/manifest.html#the-license-and-lice
           "license_file": "LICENSE",
           "links": null,
           "name": "bar",
-          "readme": "README.md",
-          "readme_file": "README.md",
+          "readme": "README.md.md",
+          "readme_file": "README.md.md",
           "repository": "https://github.com/example/example",
           "rust_version": "1.60",
           "vers": "1.2.3"
@@ -801,7 +801,7 @@ See https://doc.rust-lang.org/cargo/reference/manifest.html#the-license-and-lice
             "Cargo.toml",
             "Cargo.toml.orig",
             "src/main.rs",
-            "README.md",
+            "README.md.md",
             "LICENSE",
             ".cargo_vcs_info.json",
             "bar.txt",
@@ -833,7 +833,7 @@ include = [
     "**/*.rs",
     "Cargo.toml",
     "LICENSE",
-    "README.md",
+    "README.md.md",
 ]
 publish = true
 autolib = false
@@ -844,7 +844,7 @@ autobenches = false
 description = "This is a crate"
 homepage = "https://www.rust-lang.org"
 documentation = "https://www.rust-lang.org/learn"
-readme = "README.md"
+readme = "README.md.md"
 keywords = ["cli"]
 categories = ["development-tools"]
 license = "MIT"
