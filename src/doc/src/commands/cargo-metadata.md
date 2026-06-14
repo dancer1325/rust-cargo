@@ -228,7 +228,7 @@ The JSON output has the following format:
                 "cli"
             ],
             /* The readme value from the manifest or null if not specified. */
-            "readme": "README.md.md",
+            "readme": "index.md.md",
             /* The repository value from the manifest or null if not specified. */
             "repository": "https://github.com/rust-lang/cargo",
             /* The homepage value from the manifest or null if not specified. */

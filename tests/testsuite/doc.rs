@@ -2978,8 +2978,8 @@ fn rebuild_tracks_target_src_outside_package_root() {
 fn rebuild_tracks_include_str() {
     let p = cargo_test_support::project_in("parent")
         .file("Cargo.toml", &basic_lib_manifest("foo"))
-        .file("src/lib.rs", r#"#![doc = include_str!("../../README.md")]"#)
-        .file("../README.md", "# depinfo-before")
+        .file("src/lib.rs", r#"#![doc = include_str!("../../index.md")]"#)
+        .file("../index.md", "# depinfo-before")
         .build();
 
     p.cargo("doc -Zrustdoc-depinfo")
@@ -2995,12 +2995,12 @@ fn rebuild_tracks_include_str() {
     let doc_html = p.read_file("target/doc/foo/index.html");
     assert!(doc_html.contains("depinfo-before"));
 
-    p.change_file("../README.md", "# depinfo-after");
+    p.change_file("../index.md", "# depinfo-after");
 
     p.cargo("doc --verbose -Zrustdoc-depinfo")
         .masquerade_as_nightly_cargo(&["rustdoc-depinfo"])
         .with_stderr_data(str![[r#"
-[DIRTY] foo v0.5.0 ([ROOT]/parent/foo): the file `src/../../README.md` has changed ([TIME_DIFF_AFTER_LAST_BUILD])
+[DIRTY] foo v0.5.0 ([ROOT]/parent/foo): the file `src/../../index.md` has changed ([TIME_DIFF_AFTER_LAST_BUILD])
 [DOCUMENTING] foo v0.5.0 ([ROOT]/parent/foo)
 [RUNNING] `rustdoc [..]`
 [FINISHED] `dev` profile [unoptimized + debuginfo] target(s) in [ELAPSED]s
@@ -3169,8 +3169,8 @@ fn rebuild_tracks_env_in_dep() {
 fn rebuild_tracks_checksum() {
     let p = cargo_test_support::project_in("parent")
         .file("Cargo.toml", &basic_lib_manifest("foo"))
-        .file("src/lib.rs", r#"#![doc = include_str!("../../README.md")]"#)
-        .file("../README.md", "# depinfo-before")
+        .file("src/lib.rs", r#"#![doc = include_str!("../../index.md")]"#)
+        .file("../index.md", "# depinfo-before")
         .build();
 
     p.cargo("doc -Zrustdoc-depinfo -Zchecksum-freshness")
@@ -3186,14 +3186,14 @@ fn rebuild_tracks_checksum() {
     let doc_html = p.read_file("target/doc/foo/index.html");
     assert!(doc_html.contains("depinfo-before"));
 
-    p.change_file("../README.md", "# depinfo-after");
+    p.change_file("../index.md", "# depinfo-after");
     // Change mtime into the future
     p.root().move_into_the_future();
 
     p.cargo("doc --verbose -Zrustdoc-depinfo -Zchecksum-freshness")
         .masquerade_as_nightly_cargo(&["rustdoc-depinfo"])
         .with_stderr_data(str![[r#"
-[DIRTY] foo v0.5.0 ([ROOT]/parent/foo): file size changed (16 != 15) for `src/../../README.md`
+[DIRTY] foo v0.5.0 ([ROOT]/parent/foo): file size changed (16 != 15) for `src/../../index.md`
 [DOCUMENTING] foo v0.5.0 ([ROOT]/parent/foo)
 [RUNNING] `rustdoc [..]`
 [FINISHED] `dev` profile [unoptimized + debuginfo] target(s) in [ELAPSED]s

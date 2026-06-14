@@ -51,7 +51,7 @@ It might not be obvious if they named their file correctly.
 ```toml
 [package]
 name = "foo"
-readme = "README.md.md"
+readme = "index.md.md"
 ```
 
 Should be written as:

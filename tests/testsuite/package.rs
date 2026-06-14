@@ -1391,7 +1391,7 @@ fn dirty_file_outside_pkg_root_considered_dirty() {
         )
         .file("lib.rs", r#"compile_error!("you shall not pass")"#)
         .file("LICENSE", "before")
-        .file("README.md.md", "before")
+        .file("index.md.md", "before")
         .file(
             "isengard/Cargo.toml",
             r#"
@@ -1405,7 +1405,7 @@ fn dirty_file_outside_pkg_root_considered_dirty() {
         )
         .file("original-dir/file", "before")
         .symlink("lib.rs", "isengard/src/lib.rs")
-        .symlink("README.md.md", "isengard/README.md.md")
+        .symlink("index.md.md", "isengard/index.md.md")
         .file(&main_outside_pkg_root, "fn main() {}")
         .symlink(&main_outside_pkg_root, "isengard/src/main.rs")
         .symlink_dir("original-dir", "isengard/symlink-dir")
@@ -1416,7 +1416,7 @@ fn dirty_file_outside_pkg_root_considered_dirty() {
     // as dirty. `cargo package` is expected to fail on VCS status check.
     //
     // * Changes in files outside package root that source files symlink to
-    p.change_file("README.md.md", "after");
+    p.change_file("index.md.md", "after");
     p.change_file("lib.rs", "pub fn after() {}");
     p.change_file("original-dir/file", "after");
     // * Changes in files outside pkg root that `license-file`/`readme` point to
@@ -1447,7 +1447,7 @@ fn dirty_file_outside_pkg_root_considered_dirty() {
 
 Cargo.toml
 LICENSE
-README.md.md
+index.md.md
 lib.rs
 original-dir/file
 
@@ -1485,13 +1485,13 @@ edition = "2021"
             "symlink-dir/file",
             "Cargo.lock",
             "LICENSE",
-            "README.md.md",
+            "index.md.md",
         ],
         [
             ("src/lib.rs", str!["pub fn after() {}"]),
             ("src/main.rs", str![r#"fn main() { eprintln!("after"); }"#]),
             ("symlink-dir/file", str!["after"]),
-            ("README.md.md", str!["after"]),
+            ("index.md.md", str!["after"]),
             ("LICENSE", str!["after"]),
             ("Cargo.toml", cargo_toml),
         ],
@@ -3403,7 +3403,7 @@ fn workspace_noconflict_readme() {
                 members = ["bar"]
             "#,
         )
-        .file("README.md.md", "workspace readme")
+        .file("index.md.md", "workspace readme")
         .file(
             "bar/Cargo.toml",
             r#"
@@ -3415,12 +3415,12 @@ fn workspace_noconflict_readme() {
                 authors = []
                 license = "MIT"
                 description = "bar"
-                readme = "../README.md.md"
+                readme = "../index.md.md"
                 workspace = ".."
             "#,
         )
         .file("bar/src/main.rs", "fn main() {}")
-        .file("bar/example/README.md.md", "# example readmdBar")
+        .file("bar/example/index.md.md", "# example readmdBar")
         .build();
 
     p.cargo("package")
@@ -3445,7 +3445,7 @@ fn workspace_conflict_readme() {
                 members = ["bar"]
             "#,
         )
-        .file("README.md.md", "workspace readme")
+        .file("index.md.md", "workspace readme")
         .file(
             "bar/Cargo.toml",
             r#"
@@ -3457,16 +3457,16 @@ fn workspace_conflict_readme() {
                 authors = []
                 license = "MIT"
                 description = "bar"
-                readme = "../README.md.md"
+                readme = "../index.md.md"
                 workspace = ".."
             "#,
         )
         .file("bar/src/main.rs", "fn main() {}")
-        .file("bar/README.md.md", "# workspace member: Bar")
+        .file("bar/index.md.md", "# workspace member: Bar")
         .build();
 
     p.cargo("package").with_stderr_data(str![[r#"
-[WARNING] readme `../README.md.md` appears to be a path outside of the package, but there is already a file named `README.md.md` in the root of the package. The archived crate will contain the copy in the root of the package. Update the readme to point to the path relative to the root of the package to remove this warning.
+[WARNING] readme `../index.md.md` appears to be a path outside of the package, but there is already a file named `index.md.md` in the root of the package. The archived crate will contain the copy in the root of the package. Update the readme to point to the path relative to the root of the package to remove this warning.
 [PACKAGING] bar v0.0.1 ([ROOT]/foo/bar)
 [PACKAGED] 5 files, [FILE_SIZE]B ([FILE_SIZE]B compressed)
 [VERIFYING] bar v0.0.1 ([ROOT]/foo/bar)
@@ -4390,7 +4390,7 @@ fn normalize_paths() {
     description = "foo"
     documentation = "docs.rs/foo"
     authors = []
-    readme = ".\\docs\\README.md.md"
+    readme = ".\\docs\\index.md.md"
     license-file = ".\\docs\\LICENSE"
     build = ".\\src\\build.rs"
 
@@ -4415,7 +4415,7 @@ fn normalize_paths() {
     "#,
         )
         .file("src/lib.rs", "")
-        .file("docs/README.md.md", "")
+        .file("docs/index.md.md", "")
         .file("docs/LICENSE", "")
         .file("src/build.rs", "fn main() {}")
         .file("src/bin/foo/main.rs", "fn main() {}")
@@ -4445,7 +4445,7 @@ fn normalize_paths() {
             "Cargo.toml",
             "Cargo.toml.orig",
             "src/lib.rs",
-            "docs/README.md.md",
+            "docs/index.md.md",
             "docs/LICENSE",
             "src/build.rs",
             "src/bin/foo/main.rs",
@@ -4480,7 +4480,7 @@ autotests = false
 autobenches = false
 description = "foo"
 documentation = "docs.rs/foo"
-readme = "docs/README.md.md"
+readme = "docs/index.md.md"
 license-file = "docs/LICENSE"
 
 [lib]

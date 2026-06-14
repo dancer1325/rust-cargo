@@ -492,7 +492,7 @@ fn cp_sources(
 /// HACK: Perform the bare minimum of `prepare_for_publish` needed for #14348.
 ///
 /// There are parts of `prepare_for_publish` that could be directly useful (e.g. stripping
-/// `[workspace]`) while other parts that require other filesystem operations (moving the README.md
+/// `[workspace]`) while other parts that require other filesystem operations (moving the index.md
 /// file) and ideally we'd reuse `cargo package` code to take care of all of this for us.
 fn prepare_for_vendor(
     me: &Package,

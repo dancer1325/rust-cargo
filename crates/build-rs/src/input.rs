@@ -606,7 +606,7 @@ pub fn cargo_pkg_rust_version() -> Option<String> {
     to_opt(var_or_panic("CARGO_PKG_RUST_VERSION")).map(to_string)
 }
 
-/// Path to the README.md file of your package.
+/// Path to the index.md file of your package.
 #[track_caller]
 pub fn cargo_pkg_readme() -> Option<PathBuf> {
     to_opt(var_or_panic("CARGO_PKG_README")).map(to_path)

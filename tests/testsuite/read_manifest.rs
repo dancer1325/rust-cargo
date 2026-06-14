@@ -158,10 +158,10 @@ fn cargo_read_manifest_default_readme() {
     };
 
     assert_output(
-        "README.md.md",
+        "index.md.md",
         str![[r#"
 {
-  "readme": "README.md.md",
+  "readme": "index.md.md",
   "...": "{...}"
 }
 "#]]
@@ -169,10 +169,10 @@ fn cargo_read_manifest_default_readme() {
     );
 
     assert_output(
-        "README.md.txt",
+        "index.md.txt",
         str![[r#"
 {
-  "readme": "README.md.txt",
+  "readme": "index.md.txt",
   "...": "{...}"
 }
 "#]]
@@ -180,10 +180,10 @@ fn cargo_read_manifest_default_readme() {
     );
 
     assert_output(
-        "README.md",
+        "index.md",
         str![[r#"
 {
-  "readme": "README.md",
+  "readme": "index.md",
   "...": "{...}"
 }
 "#]]
@@ -198,7 +198,7 @@ fn cargo_read_manifest_suppress_default_readme() {
             "Cargo.toml",
             &basic_bin_manifest_with_readme("foo", "false"),
         )
-        .file("README.md.txt", "Sample project")
+        .file("index.md.txt", "Sample project")
         .file("src/foo.rs", &main_file(r#""i am foo""#, &[]))
         .build();
 
@@ -215,12 +215,12 @@ fn cargo_read_manifest_suppress_default_readme() {
         .run();
 }
 
-// If a file named README.md.md exists, and `readme = true`, the value `README.md.md` should be defaulted in.
+// If a file named index.md.md exists, and `readme = true`, the value `index.md.md` should be defaulted in.
 #[cargo_test]
 fn cargo_read_manifest_defaults_readme_if_true() {
     let p = project()
         .file("Cargo.toml", &basic_bin_manifest_with_readme("foo", "true"))
-        .file("README.md.md", "Sample project")
+        .file("index.md.md", "Sample project")
         .file("src/foo.rs", &main_file(r#""i am foo""#, &[]))
         .build();
 
@@ -228,7 +228,7 @@ fn cargo_read_manifest_defaults_readme_if_true() {
         .with_stdout_data(
             str![[r#"
 {
-  "readme": "README.md.md",
+  "readme": "index.md.md",
   "...": "{...}"
 }
 "#]]
